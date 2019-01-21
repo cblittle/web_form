@@ -1,0 +1,53 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <script>
+      function ShowSuccess() {
+        var userName = window.sessionStorage.getItem("UserName");
+        var adoConn = new ActiveXObject("ADODB.Connection");
+        var adoRS = new ActiveXObject("ADODB.Recordset");
+
+        //Make sure connectionString spacing is correct
+        var connectionString =
+          "Data Source=csc.henderson.edu;Initial Catalog=ClientServer;User ID=clientserversql;Password=Henderson2018$;Provider=SQLOLEDB";
+        adoConn.Open(connectionString);
+
+        adoRS.Open(
+          "SELECT * FROM users WHERE UserName = '" + userName + "'",
+          adoConn
+        );
+
+        document.getElementById("lblName").innerHTML =
+          adoRS.fields("FirstName") +
+          " " +
+          adoRS.fields("LastName") +
+          " " +
+          adoRS.fields("UserName");
+
+        adoRS.Close();
+        adoConn.Close();
+      }
+    </script>
+  </head>
+
+  <body onload="ShowSuccess()">
+    <form class="form">
+      <h2>Thank you for creating your account!</h2>
+      <div>
+        <label id="lblName">
+          Your account has been successfully created.
+        </label>
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script>
+            var adoConn = new ActiveXObject("ADODB.Connection");
+            var adoRS = new ActiveXObject("ADODB.Recordset");
+
+            //Make sure connectionString spacing is correct
+            var connectionString = "Data Source=csc.henderson.edu;Initial Catalog=ClientServer;User ID=clientserversql;Password=Henderson2018$;Provider=SQLOLEDB";
+            adoConn.Open(connectionString);
+
+            adoRS.Open("SELECT * FROM users", adoConn, 1, 3);
+
+            //Start Process of adding
+            adoRS.AddNew();
+
+            adoRS.fields("UserName").value = document.getElementById("Username").value;
+            adoRS.fields("Password").value = document.getElementById("Password").value;
+            adoRS.fields("FirstName").value = document.getElementById("FirstName").value;
+            adoRS.fields("LastName").value = document.getElementById("LastName").value;
+            adoRS.fields("EmailAddress").value = document.getElementById("EmailAddress").value;
+            adoRS.fields("PhoneNumber").value = document.getElementById("PhoneNumber").value;
+            adoRS.fields("Address").value = document.getElementById("Address").value;
+            adoRS.fields("City").value = document.getElementById("City").value;
+            adoRS.fields("State").value = document.getElementById("State").value;
+            adoRS.fields("ZipCode").value = document.getElementById("Zip").value;
+            adoRS.fields("Gender").value = document.getElementById("Gender").value;
+            adoRS.fields("Source").value = document.getElementById('input[name = "Referral"]:checked').value;
+
+            //Will update or insert based on whether the key already exists
+            adoRS.Update();
+
+            adoRS.close;
+            adoConn.close;
+
+            sessionStorage.setItem("UserName", document.getElementById("UserName").value);
+    </script>
+</head>
+
+<body>
+
+    <div class="row row mb-lg-4 ">
+        <label class="col-sm-1"> </label>
+        <h2 class="col-sm-5">Create an Account</h2>
+    </div>
+
+
+    <form name="Main Form" id="MainForm" class="form-group" action="success.html">
+
+        <div class="row mb-sm-4">
+            <label class="col-sm-1"> </label>
+            <label class="col-sm-1">First Name: </label>
+            <input name="First Name" id="FirstName" type="text" class="col-sm-3" />
+
+            <label class="col-sm-1">Last Name: </label>
+            <input name="Last Name" id="LastName" type="text" class="col-sm-2" />
+
+            <select id="Gender" class="col-sm-1">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+
+        <!--Phone and Email-->
+        <div class="row mb-sm-4">
+            <label class="col-sm-1"> </label>
+            <label class="col-sm-1">Phone Number: </label>
+            <input name="Phone Number" id="PhoneNumber" type="text" class="col-sm-3" />
+
+            <label class="col-sm-1">Email Address: </label>
+            <input name="Email Address" id="EmailAddress" type="text" class="col-sm-3" />
+        </div>
+
+        <!--Address-->
+        <div class="row mb-sm-4">
+            <label class="col-sm-1"> </label>
+            <label class="col-sm-1">Address: </label>
+            <input name="Address" id="Address" type="text" class="col-sm-7" />
+        </div>
+
+        <!--City, State, Zip-->
+        <div class="row mb-sm-4">
+            <label class="col-sm-1"> </label>
+            <label class="col-sm-1">City: </label>
+            <input name="City" id="City" type="text" class="col-sm-3" />
+
+            <select id="State" class="col-sm-1">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+            </select>
+
+            <label class="col-sm-1">Zip: </label>
+            <input name="Zip" id="Zip" type="text" class="col-sm-2" />
+        </div>
+
+        <div class="row mb-sm-4">
+            <label class="col-sm-1"> </label>
+            <label class="col-sm-1">Username: </label>
+            <input name="Username" id="Username" type="text" class="col-sm-3" />
+
+            <label class="col-sm-1">Password: </label>
+            <input name="Password" id="Password" type="text" class="col-sm-3" />
+        </div>
+
+        <div class="row mb-sm-4">
+            <label class="col-sm-1"> </label>
+            <label class="col-sm-1">How did you hear about us? </label>
+            <div class="col-sm-3">
+                <label>Online </label>
+                <input name="Referral" type="radio" value="Option 1" id="Option1Radio" />
+                <label class="ml-sm-2">TV </label>
+                <input name="Referral" type="radio" value="Option 2" id="Option2Radio" />
+                <label class="ml-sm-2">Radio </label>
+                <input name="Referral" type="radio" value="Option 3" id="Option3Radio" />
+                <label class="ml-sm-2">Print </label>
+                <input name="Referral" type="radio" value="Option 4" id="Option4Radio" />
+                <label class="ml-sm-2">Word of Mouth </label>
+                <input name="Referral" type="radio" value="Option 5" id="Option5Radio" />
+
+            </div>
+
+            <label class="col-sm-1"> </label>
+            <input type="submit" name="Submit Button" value="Submit" class="btn col-sm-1" onclick="insertData()" />
+            <label class="col-sm-1"> </label>
+            <input type="reset" name="Reset Button" value="Reset" class="btn col-sm-1" />
+        </div>
+
+
+
+
+
+
+    </form>
+
+
+
+
+</body>
+
+</html>
